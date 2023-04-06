@@ -1,0 +1,9 @@
+name: AvEngine
+version: '${project.version}'
+main: cz.MrAlesyk.net.AvEngine.AvEngine
+api-version: 1.19
+
+commands:
+  login:
+  register:
+  unregister:
