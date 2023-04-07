@@ -12,10 +12,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.sql.SQLException;
 
 public class PlayerJoin implements Listener {
+
+    AvEngine engine;
+
+    public PlayerJoin(AvEngine engine) {
+        this.engine = engine;
+    }
 
     @EventHandler
     public void on(PlayerJoinEvent event) {
@@ -29,8 +36,9 @@ public class PlayerJoin implements Listener {
                 Utils.ClearChat(player);
 
                 player.sendMessage(Utils.c(AuthLang.authcore_automatically_logged));
-                Utils.redirectPlayer(player, "Lobby01");
                 AuthCore.setPlayerLogged(player, true);
+                Bukkit.getScheduler().runTaskLater(engine, (bukkitTask -> Utils.redirectPlayer(player, "Lobbby01")), 10L);
+                Bukkit.getScheduler().runTaskLater(engine, (bukkitTask -> player.sendMessage("cs ted by te to spravne melo prepojit")), 10L);
             } else {
                 Utils.ClearChat(player);
                 player.sendMessage(Utils.c(AuthLang.authcore_register_request));

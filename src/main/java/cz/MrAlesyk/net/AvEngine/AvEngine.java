@@ -63,7 +63,6 @@ public class AvEngine extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        plugin=this;
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         try {
@@ -79,11 +78,16 @@ public class AvEngine extends JavaPlugin {
             new NotRegisteredMessager().runTaskTimer(this, 0, 5*20);
 
             Bukkit.getPluginManager().registerEvents(new DontDoStuff(), this);
-            Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
+            Bukkit.getPluginManager().registerEvents(new PlayerJoin(this), this);
             Bukkit.getPluginManager().registerEvents(new PlayerQuit(), this);
 
             this.getCommand("login").setExecutor(new Login());
             this.getCommand("register").setExecutor(new Register());
+            this.getCommand("unregister").setExecutor(new Unregister());
+        } else if (Bukkit.getWorlds().contains(Bukkit.getWorld("Lobby"))){
+            Bukkit.getCommandMap().getKnownCommands().remove("login");
+            Bukkit.getCommandMap().getKnownCommands().remove("register");
+
             this.getCommand("unregister").setExecutor(new Unregister());
         }
     }
