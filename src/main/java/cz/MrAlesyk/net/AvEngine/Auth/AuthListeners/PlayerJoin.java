@@ -37,7 +37,7 @@ public class PlayerJoin implements Listener {
 
                 player.sendMessage(Utils.c(AuthLang.authcore_automatically_logged));
                 AuthCore.setPlayerLogged(player, true);
-                Bukkit.getScheduler().runTaskLater(engine, (bukkitTask -> Utils.redirectPlayer(player, "Lobbby01")), 10L);
+                Bukkit.getScheduler().runTaskLater(engine, (bukkitTask -> Utils.redirectPlayer(player, "Lobby01")), 10L);
                 Bukkit.getScheduler().runTaskLater(engine, (bukkitTask -> player.sendMessage("cs ted by te to spravne melo prepojit")), 10L);
             } else {
                 Utils.ClearChat(player);
